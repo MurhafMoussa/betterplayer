@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:better_player/better_player.dart';
 import 'package:better_player/src/configuration/better_player_controller_event.dart';
 import 'package:better_player/src/core/better_player_utils.dart';
@@ -172,10 +173,17 @@ class _BetterPlayerState extends State<BetterPlayer>
       BetterPlayerControllerProvider controllerProvider) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        alignment: Alignment.center,
-        color: Colors.black,
-        child: controllerProvider,
+      body: Dismissible(
+        direction: DismissDirection.vertical,
+        key: const Key('key'),
+        onDismissed: (_) => Navigator.of(context).pop(),
+        child: InteractiveViewer(
+          child: Container(
+            alignment: Alignment.center,
+            color: Colors.black,
+            child: controllerProvider,
+          ),
+        ),
       ),
     );
   }
