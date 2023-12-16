@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+
 import 'package:better_player/better_player.dart';
 import 'package:better_player/src/controls/better_player_clickable_widget.dart';
 import 'package:better_player/src/core/better_player_utils.dart';
@@ -31,30 +32,56 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
         videoPlayerValue.position >= videoPlayerValue.duration!;
   }
 
-  void skipBack() {
-    if (latestValue != null) {
-      cancelAndRestartTimer();
-      final beginning = const Duration().inMilliseconds;
-      final skip = (latestValue!.position -
-              Duration(
-                  milliseconds: betterPlayerControlsConfiguration
-                      .backwardSkipTimeInMilliseconds))
-          .inMilliseconds;
-      betterPlayerController!
-          .seekTo(Duration(milliseconds: max(skip, beginning)));
-    }
+  void onTapSkipBack() {
+    _skipBack(
+      Duration(
+        milliseconds:
+            betterPlayerControlsConfiguration.onTapSkipTimeInMilliseconds,
+      ),
+    );
   }
 
-  void skipForward() {
+  void onDoubleTapSkipBack() {
+    _skipBack(
+      Duration(
+        milliseconds:
+            betterPlayerControlsConfiguration.onDoubleTapSkipTimeInMilliseconds,
+      ),
+    );
+  }
+
+  void onTapSkipForward() {
+    _skipForward(
+      Duration(
+          milliseconds:
+              betterPlayerControlsConfiguration.onTapSkipTimeInMilliseconds),
+    );
+  }
+
+  void onDoubleTapSkipForward() {
+    _skipForward(
+      Duration(
+          milliseconds: betterPlayerControlsConfiguration
+              .onDoubleTapSkipTimeInMilliseconds),
+    );
+  }
+
+  void _skipForward(Duration skipDuration) {
     if (latestValue != null) {
       cancelAndRestartTimer();
       final end = latestValue!.duration!.inMilliseconds;
-      final skip = (latestValue!.position +
-              Duration(
-                  milliseconds: betterPlayerControlsConfiguration
-                      .forwardSkipTimeInMilliseconds))
-          .inMilliseconds;
+      final skip = (latestValue!.position + skipDuration).inMilliseconds;
       betterPlayerController!.seekTo(Duration(milliseconds: min(skip, end)));
+    }
+  }
+
+  void _skipBack(Duration skipDuration) {
+    if (latestValue != null) {
+      cancelAndRestartTimer();
+      final beginning = const Duration().inMilliseconds;
+      final skip = (latestValue!.position - skipDuration).inMilliseconds;
+      betterPlayerController!
+          .seekTo(Duration(milliseconds: max(skip, beginning)));
     }
   }
 

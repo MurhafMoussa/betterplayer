@@ -8,27 +8,26 @@ homepage: https://github.com/jhomlala/betterplayer
 documentation: https://jhomlala.github.io/betterplayer/
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
-  flutter: ">=2.2.3"
+  sdk: '>=3.1.2 <4.0.0'
+  flutter: ">=3.13.5"
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
   wakelock: ^0.6.2
-  meta: ^1.9.1
-  flutter_widget_from_html_core: ^0.14.6
+
+  flutter_widget_from_html_core: ^0.14.9
   visibility_detector: ^0.4.0+2
   path_provider: ^2.1.1
-  collection: ^1.17.2
-  xml: ^6.3.0
 
-dev_dependencies:
-  lint: ^2.2.0
-  flutter_test:
-    sdk: flutter
+  xml: ^6.3.0
   flutter_localizations:
     sdk: flutter
+dev_dependencies:
+  lint: ^2.2.0
+
+
 
 flutter:
   plugin:

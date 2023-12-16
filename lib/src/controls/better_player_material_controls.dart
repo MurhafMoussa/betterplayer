@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:better_player/src/configuration/better_player_controls_configuration.dart';
 import 'package:better_player/src/controls/better_player_clickable_widget.dart';
 import 'package:better_player/src/controls/better_player_controls_state.dart';
@@ -8,7 +9,6 @@ import 'package:better_player/src/controls/better_player_progress_colors.dart';
 import 'package:better_player/src/core/better_player_controller.dart';
 import 'package:better_player/src/core/better_player_utils.dart';
 import 'package:better_player/src/video_player/video_player.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
@@ -397,12 +397,16 @@ class _BetterPlayerMaterialControlsState
     );
   }
 
-  Widget _buildHitAreaClickableButton(
-      {Widget? icon, required void Function() onClicked}) {
+  Widget _buildHitAreaClickableButton({
+    Widget? icon,
+    required void Function() onTap,
+    void Function()? onDoubleTap,
+  }) {
     return Container(
       constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
       child: BetterPlayerMaterialClickableWidget(
-        onTap: onClicked,
+        onTap: onTap,
+        onDoubleTap: onDoubleTap,
         child: Align(
           child: Container(
             decoration: BoxDecoration(
@@ -428,7 +432,8 @@ class _BetterPlayerMaterialControlsState
         size: 24,
         color: _controlsConfiguration.iconsColor,
       ),
-      onClicked: skipBack,
+      onTap: onTapSkipBack,
+      onDoubleTap: onDoubleTapSkipBack,
     );
   }
 
@@ -439,7 +444,8 @@ class _BetterPlayerMaterialControlsState
         size: 24,
         color: _controlsConfiguration.iconsColor,
       ),
-      onClicked: skipForward,
+      onTap: onTapSkipForward,
+      onDoubleTap: onDoubleTapSkipForward,
     );
   }
 
@@ -459,7 +465,7 @@ class _BetterPlayerMaterialControlsState
               size: 42,
               color: _controlsConfiguration.iconsColor,
             ),
-      onClicked: () {
+      onTap: () {
         if (isFinished) {
           if (_latestValue != null && _latestValue!.isPlaying) {
             if (_displayTapped) {

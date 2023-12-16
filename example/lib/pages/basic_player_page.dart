@@ -29,6 +29,8 @@ class _BasicPlayerPageState extends State<BasicPlayerPage> {
             aspectRatio: 16 / 9,
             child: BetterPlayer.network(
               Constants.forBiggerBlazesUrl,
+              betterPlayerConfiguration: BetterPlayerConfiguration(
+                  controlsConfiguration: BetterPlayerControlsConfiguration()),
             ),
           ),
           Padding(

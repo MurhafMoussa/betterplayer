@@ -140,11 +140,11 @@ class BetterPlayerControlsConfiguration {
   ///Color of overflow menu icons
   final Color overflowMenuIconsColor;
 
-  ///Time which will be used once user uses forward
-  final int forwardSkipTimeInMilliseconds;
+  ///Time which will be used once user taps on forward or backward
+  final int onTapSkipTimeInMilliseconds;
 
-  ///Time which will be used once user uses backward
-  final int backwardSkipTimeInMilliseconds;
+  ///Time which will be used once user double taps on forward or backward
+  final int onDoubleTapSkipTimeInMilliseconds;
 
   ///Color of default loading indicator
   final Color loadingColor;
@@ -206,8 +206,8 @@ class BetterPlayerControlsConfiguration {
     this.subtitlesIcon = Icons.closed_caption_outlined,
     this.audioTracksIcon = Icons.audiotrack_outlined,
     this.overflowMenuIconsColor = Colors.black,
-    this.forwardSkipTimeInMilliseconds = 10000,
-    this.backwardSkipTimeInMilliseconds = 10000,
+    this.onTapSkipTimeInMilliseconds = 10000,
+    this.onDoubleTapSkipTimeInMilliseconds = 5000,
     this.loadingColor = Colors.white,
     this.loadingWidget,
     this.backgroundColor = Colors.black,
