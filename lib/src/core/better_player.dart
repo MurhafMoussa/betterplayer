@@ -26,14 +26,23 @@ class BetterPlayer extends StatefulWidget {
       );
 
   factory BetterPlayer.file(
-    String url, {
+    String path, {
     BetterPlayerConfiguration? betterPlayerConfiguration,
   }) =>
       BetterPlayer(
         controller: BetterPlayerController(
           betterPlayerConfiguration ?? const BetterPlayerConfiguration(),
-          betterPlayerDataSource:
-              BetterPlayerDataSource(BetterPlayerDataSourceType.file, url),
+          betterPlayerDataSource: BetterPlayerDataSource.file(path),
+        ),
+      );
+  factory BetterPlayer.memory(
+    List<int> chunks, {
+    BetterPlayerConfiguration? betterPlayerConfiguration,
+  }) =>
+      BetterPlayer(
+        controller: BetterPlayerController(
+          betterPlayerConfiguration ?? const BetterPlayerConfiguration(),
+          betterPlayerDataSource: BetterPlayerDataSource.memory(chunks),
         ),
       );
 
